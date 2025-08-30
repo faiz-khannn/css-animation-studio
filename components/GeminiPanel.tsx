@@ -33,6 +33,9 @@ const GeminiPanel: React.FC<GeminiPanelProps> = ({ onGenerate, isLoading, error 
                     className="w-full bg-slate-700 text-slate-200 rounded-md p-2 text-sm focus:ring-2 focus:ring-sky-500 border border-slate-600 focus:border-sky-500 outline-none transition-colors"
                     disabled={isLoading}
                 />
+                 <p className="text-xs text-slate-400 italic text-center px-1">
+                    Tip: The AI animates a single element. Try "a ball bouncing off walls" or "an object pulsing with light".
+                </p>
                 <button
                     type="submit"
                     className="w-full flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-700 disabled:bg-slate-600 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-violet-500"

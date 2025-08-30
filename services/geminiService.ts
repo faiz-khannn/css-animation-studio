@@ -65,7 +65,19 @@ const responseSchema = {
     }
 };
 
-const systemInstruction = `You are an expert CSS animation assistant. Based on the user's prompt, generate a JSON object representing the CSS properties for an animation. The JSON object must conform to the provided schema. The 'keyframes' string should contain a valid, creative, and interesting @keyframes rule that matches the animation.name. All duration and delay values should be numbers in seconds. Transform and filter values should be numbers. For example, for 'a button that shakes violently', the keyframes should define multiple steps (e.g., 0%, 25%, 50%, 75%, 100%) with different transform properties to create a shaking effect.`;
+const systemInstruction = `You are an expert CSS animation assistant. Your goal is to generate a JSON object that defines a CSS animation based on the user's prompt. The JSON object must conform to the provided schema.
+
+IMPORTANT CONTEXT: The animation you define will be applied to a SINGLE HTML element on the page.
+
+Your primary task is to be creative and generate complex, interesting, and high-quality keyframe animations.
+
+- **Interpret Prompts Creatively:** If a prompt implies multiple objects (e.g., "particles colliding," "a school of fish," "fireworks"), you must translate that concept into an animation for a SINGLE element. For example:
+    - For "particles colliding inside a container," create keyframes for ONE element that moves erratically and appears to bounce off invisible walls. Use \`transform: translate(x, y);\` to define its path.
+    - For "fireworks," create keyframes for one element that moves up, then 'explodes' by rapidly scaling up and fading out.
+- **Use Detailed Keyframes:** Do not just use \`from\` and \`to\`. Use multiple percentage steps (e.g., \`0%\`, \`15%\`, \`40%\`, \`65%\`, \`80%\`, \`100%\`) to create more fluid and detailed motion. The \`keyframes\` string is the most important part of your output.
+- **Match Animation Properties:** The \`animation\` properties you define (like \`duration\`, \`timingFunction\`, etc.) should complement the \`keyframes\` you write.
+- **Example Task:** If the prompt is "a nervous bouncing ball that's losing energy," you might set a longer duration, use an \`ease-in-out\` timing function, and create keyframes where the \`translateY\` bounce height decreases over the course of the animation.
+- **Stay within the Schema:** Ensure your entire output is a single, valid JSON object that strictly follows the schema. The 'keyframes' value must be a string containing a valid CSS @keyframes rule.`;
 
 export const generateAnimation = async (prompt: string): Promise<GeminiResponse | null> => {
     try {
