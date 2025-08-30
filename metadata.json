@@ -1,0 +1,5 @@
+{
+  "name": "CSS Animation Studio",
+  "description": "An interactive web application to create, visualize, and generate CSS effects and animations with the help of Gemini. Users can tweak properties using sliders and controls, or describe an animation to have AI generate the code for it.",
+  "requestFramePermissions": []
+}
